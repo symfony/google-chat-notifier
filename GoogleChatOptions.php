@@ -62,7 +62,7 @@ final class GoogleChatOptions implements MessageOptionsInterface
     }
 
     /**
-     * @return $this
+     * @deprecated google chat cards-v1 deprecated, use "cardV2()" instead.
      */
     public function card(array $card): static
     {
@@ -71,9 +71,13 @@ final class GoogleChatOptions implements MessageOptionsInterface
         return $this;
     }
 
-    /**
-     * @return $this
-     */
+    public function cardV2(array $card): static
+    {
+        $this->options['cardsV2'][] = $card;
+
+        return $this;
+    }
+
     public function text(string $text): static
     {
         $this->options['text'] = $text;
@@ -81,9 +85,6 @@ final class GoogleChatOptions implements MessageOptionsInterface
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setThreadKey(?string $threadKey): static
     {
         $this->threadKey = $threadKey;
