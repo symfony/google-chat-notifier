@@ -12,9 +12,9 @@
 namespace Symfony\Component\Notifier\Bridge\GoogleChat;
 
 use Symfony\Component\HttpClient\Exception\JsonException;
-use Symfony\Component\Notifier\Exception\LogicException;
 use Symfony\Component\Notifier\Exception\TransportException;
 use Symfony\Component\Notifier\Exception\UnsupportedMessageTypeException;
+use Symfony\Component\Notifier\Exception\UnsupportedOptionsException;
 use Symfony\Component\Notifier\Message\ChatMessage;
 use Symfony\Component\Notifier\Message\MessageInterface;
 use Symfony\Component\Notifier\Message\SentMessage;
@@ -74,7 +74,7 @@ final class GoogleChatTransport extends AbstractTransport
         }
 
         if (($options = $message->getOptions()) && !$options instanceof GoogleChatOptions) {
-            throw new LogicException(\sprintf('The "%s" transport only supports instances of "%s" for options.', __CLASS__, GoogleChatOptions::class));
+            throw new UnsupportedOptionsException(__CLASS__, GoogleChatOptions::class, $options);
         }
 
         if (!$options) {
