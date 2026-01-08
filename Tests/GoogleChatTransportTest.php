@@ -124,7 +124,7 @@ final class GoogleChatTransportTest extends TransportTestCase
 
     public function testSendWithInvalidOptions()
     {
-        $options = $this->createMock(MessageOptionsInterface::class);
+        $options = $this->createStub(MessageOptionsInterface::class);
         $this->expectException(UnsupportedOptionsException::class);
         $this->expectExceptionMessage(\sprintf('The "%s" transport only supports instances of "%s" for options (instance of "%s" given).', GoogleChatTransport::class, GoogleChatOptions::class, get_debug_type($options)));
 
